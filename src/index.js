@@ -1,9 +1,12 @@
 const express = require('express');
-const app = express();
 const path = require('path');
 const hbs = require('express-handlebars');
 const override = require('method-override');
 const session = require('express-session');
+
+//Inicializaciones
+const app = express();
+require('./database');
 
 //Configuraciones
 const port = process.env.PORT || 3000;
@@ -26,11 +29,16 @@ app.use(session({
 }));
 
 //Rutas
-
+app.use(require('./routes/index'));
+app.use(require('./routes/notes'));
+app.use(require('./routes/users'));
 
 app.get('/', (req, res)=>{
     res.send('Hola remardito')
-})
+});
+
+//archivos estáticos
+app.use(express.static(path.join(__dirname, 'public')))
 
 
-app.listen(port, ()=> console.log('Aplicación escuchando en el puerto ' + port))
+app.listen(port, ()=> console.log('Servidor corriendo en el puerto ' + port))
