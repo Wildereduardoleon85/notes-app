@@ -3,6 +3,7 @@ const path = require('path');
 const hbs = require('express-handlebars');
 const override = require('method-override');
 const session = require('express-session');
+const flash = require('connect-flash');
 
 
 //Inicializaciones
@@ -17,6 +18,10 @@ app.engine('.hbs', hbs({
     layoutsDir: path.join(app.get('views'), 'layouts'),
     partialsDir: path.join(app.get('views'), 'partials'),
     extname: '.hbs',
+    runtimeOptions:{
+        allowProtoPropertiesByDefault: true,
+        allowProtoMethodsByDefault: true
+    }
 }));
 app.set('view engine', '.hbs');
 
@@ -28,6 +33,14 @@ app.use(session({
     resave: true,
     saveUninitialized: true
 }));
+app.use(flash());
+
+//Variables Globales
+app.use((req, res, next)=>{
+    res.locals.success_msg = req.flash('success_msg');
+    res.locals.error_msg = req.flash('error_msg');
+    next();
+})
 
 //Rutas
 app.use(require('./routes/index'));

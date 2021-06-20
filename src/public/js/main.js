@@ -2,5 +2,7 @@
     item.addEventListener('click', (e)=>{
         (e.target.parentElement.parentElement).style.display = 'none'
     })
-})
+});
+
+
 
