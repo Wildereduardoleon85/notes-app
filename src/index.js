@@ -4,6 +4,7 @@ const hbs = require('express-handlebars');
 const override = require('method-override');
 const session = require('express-session');
 
+
 //Inicializaciones
 const app = express();
 require('./database');
@@ -32,10 +33,6 @@ app.use(session({
 app.use(require('./routes/index'));
 app.use(require('./routes/notes'));
 app.use(require('./routes/users'));
-
-app.get('/', (req, res)=>{
-    res.send('Hola remardito')
-});
 
 //archivos estáticos
 app.use(express.static(path.join(__dirname, 'public')))
