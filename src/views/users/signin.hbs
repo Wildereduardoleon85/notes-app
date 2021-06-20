@@ -1,1 +1,23 @@
-<h1>Ingresar</h1>
+<div class="row">
+    <div class="col-md-4 mx-auto">
+        <div class="card mt-4 text-center">
+            <div class="card-header">
+                <h3>Ingresar</h3>
+            </div>
+            <img src="/img/notas.png" class="w-50 d-block mx-auto m-4" alt="Logo de Imagen">
+            <div class="card-body">
+                <form action="/users/signin" method="POST">
+                    <div class="form-group">
+                        <input type="email" class="form-control" name="correo" placeholder="Correo" autofocus>
+                    </div>
+                    <div class="form-group mt-3">
+                        <input type="password" class="form-control" name="password" placeholder="Contraseña" autofocus>
+                    </div>
+                    <div class="form-group mt-3">
+                        <button type="submit" class="btn btn-primary btn-block w-100">Ingresar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
